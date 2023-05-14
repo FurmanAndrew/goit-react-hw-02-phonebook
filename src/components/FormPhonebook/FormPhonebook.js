@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import css from './FormPhonebook.module.css';
  
 // const validationSchema = (values) => {
 //     const errors = {};
@@ -47,18 +48,24 @@ const FormPhonebook = (addContact) => {
             return errors;
           }}
         onSubmit = {(values) => console.log(values)}>
-        <Form>
+        <Form className={css.fopmPhonebook}>
+          <label htmlFor='name' className={css.labelPhonebook}>
+            Name
             <Field
             type="text"
             name="name"
             />
             <ErrorMessage name="name" component="div" />
+            </label>
+            <label htmlFor='number' className={css.labelPhonebook}>
+              Number
             <Field
             type="tel"
             name="number"
             />
             <ErrorMessage name="number" component="div" />
-            <button type="submit" >
+            </label>
+            <button type="submit" className={css.buttonPhonebook}>
              Add contact
            </button>
         </Form>
