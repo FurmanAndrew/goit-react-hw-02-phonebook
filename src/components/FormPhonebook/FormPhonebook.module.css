@@ -1,0 +1,20 @@
+.fopmPhonebook {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.labelPhonebook {
+    display: flex;
+    flex-direction: column;
+    height: 20px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+
+.buttonPhonebook {
+    width: 100px;
+}
