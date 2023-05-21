@@ -17,11 +17,20 @@ class App extends Component {
   filter: '',
   }
 
-  addContact = (contact) => {
-    const addCont = {...contact};
-    this.setState ((prevState) => ({
-       contacts: [...prevState.contacts, addCont]
-    }))
+  addContact = (date) => {
+    this.setState(prevState => {
+      const names = []
+
+      prevState.contacts.map(contact => {
+       return names.push(contact.name)
+      })
+
+      if (names.includes(date.name)) {
+        return alert(`${date.name} is already in contacts`)
+      }
+      
+      return { contacts: [date, ...prevState.contacts]}
+    })  
   }
 
   deleteContact = (id) => {
@@ -35,9 +44,12 @@ class App extends Component {
     this.setState( {filter: e.currentTarget.value})
   };
 
-  render (){
+  filter = () => {
     const assa = this.state.filter.toLowerCase();
-  const searchContactList = this.state.contacts.filter(contact => contact.name.toLowerCase().includes(assa))
+    return this.state.contacts.filter(contact => contact.name.toLowerCase().includes(assa))
+  }
+
+  render (){
   
 
   return (
@@ -57,7 +69,7 @@ class App extends Component {
       <FormPhonebook addContact={this.addContact}></FormPhonebook>
       <Filter search={this.state.filter} onChange = {this.onchangeFilterContact}></Filter>
       <h2>Contacts</h2>
-      <ContactList contacts={searchContactList} deleteContact = {this.deleteContact}></ContactList>
+      <ContactList contacts={this.filter()} deleteContact = {this.deleteContact}></ContactList>
     </div>
   );
 };
